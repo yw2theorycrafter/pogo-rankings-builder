@@ -1,0 +1,159 @@
+import math
+import numpy
+import json
+import sys
+
+mult_dict = { 0.094: 1.0,0.135137432: 1.5,0.16639787: 2.0,0.192650919: 2.5,0.21573247: 3.0,0.236572661: 3.5,0.25572005: 4.0,0.273530381: 4.5,0.29024988: 5.0,0.306057377: 5.5,0.3210876: 6.0,0.335445036: 6.5,0.34921268: 7.0,0.362457751: 7.5,0.37523559: 8.0,0.387592406: 8.5,0.39956728: 9.0,0.411193551: 9.5,0.42250001: 10.0,0.432926419: 10.5,0.44310755: 11.0,0.4530599578: 11.5,0.46279839: 12.0,0.472336083: 12.5,0.48168495: 13.0,0.4908558: 13.5,0.49985844: 14.0,0.508701765: 14.5,0.51739395: 15.0,0.525942511: 15.5,0.53435433: 16.0,0.542635767: 16.5,0.55079269: 17.0,0.558830576: 17.5,0.56675452: 18.0,0.574569153: 18.5,0.58227891: 19.0,0.589887917: 19.5,0.59740001: 20.0,0.604818814: 20.5,0.61215729: 21.0,0.619399365: 21.5,0.62656713: 22.0,0.633644533: 22.5,0.64065295: 23.0,0.647576426: 23.5,0.65443563: 24.0,0.661214806: 24.5,0.667934: 25.0,0.674577537: 25.5,0.68116492: 26.0,0.687680648: 26.5,0.69414365: 27.0,0.700538673: 27.5,0.70688421: 28.0,0.713164996: 28.5,0.71939909: 29.0,0.725571552: 29.5,0.7317: 30.0,0.734741009: 30.5,0.73776948: 31.0,0.740785574: 31.5,0.74378943: 32.0,0.746781211: 32.5,0.74976104: 33.0,0.752729087: 33.5,0.75568551: 34.0,0.758630378: 34.5,0.76156384: 35.0,0.764486065: 35.5,0.76739717: 36.0,0.770297266: 36.5,0.7731865: 37.0,0.776064962: 37.5,0.77893275: 38.0,0.781790055: 38.5,0.78463697: 39.0,0.787473578: 39.5,0.79030001: 40.0,0.79030001: 40 }
+d = sorted(mult_dict.iteritems())
+
+output = {}
+
+######################################################### SETTINGS ###############################################################
+
+# settings for great league rankings
+
+# always output these pokemon (by pokedex id number)
+whitelist_g = [202]
+# output a limited amount of these
+greylist_g = [216,217,191,192,322,323,333,334,218,219,316,317,278,279,422,423,420,421,351,406,407,315,51,1,2,3,4,5,6,7,8,9,338,77,78,152,153,154,155,156,157,158,159,160,161,162,177,178,189,200,220,221,252,253,254,255,256,257,258,259,260,262,277,284,286,289,288,287,295,297,340,372,373,387,388,389,390,391,392,393,394,395,400,402,428,428,429,460,
+347,348,95,345,346,140,141,111,112,464,185,140,141]
+# never output these
+blacklist_g = []
+# never output non-whitelisted mons with a max cp below this
+min_cp_g = 1250
+# maximum number of results for a standard mon
+maxr_g = 100
+# maximum results for mons that cap under the league's CP limit
+medr_g = 25
+# maximum results for greylisted mons and reallllly low cp mons still above the minimum
+minr_g = 10
+
+# settings for ultra league rankings
+
+# always output these pokemon (by pokedex id number)
+whitelist_u = []
+# output a limited amount of these
+greylist_u = []
+# never output these
+blacklist_u = []
+# never output non-whitelisted mons with a max cp below this
+min_cp_u = 2300
+# maximum number of results for a standard mon
+maxr_u = 3
+# maximum results for mons that cap under the league's CP limit
+medr_u = 2
+# maximum results for greylisted mons and reallllly low cp mons still above the minimum
+minr_u = 1
+
+###############################################################################################################################
+
+with open('pogo-mon-data.json') as json_file:  
+    data = json.load(json_file)
+    for p in data:
+    	batk = int(p['atk'])
+    	bdef = int(p['def'])
+    	bsta = int(p['sta'])
+    	num = int(p['id'])
+    	evos = p['evolutions']
+
+    	max_cp = max(10,int( 0.6245741058 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10))
+    	if max_cp < min_cp_g and not int(num) in whitelist_g:
+    		print('Skip: '+p['name']+' | Max CP: '+str(max_cp))
+    		continue
+
+    	gl_out = { }
+    	ul_out = { }
+
+    	for atkiv in range(16):
+			for defiv in range(16):
+				for staiv in range(16):
+
+					glvl = 0
+					gl_mult = 0.094
+					gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+					for mult, lvl in d:
+						if (mult > gl_mult ):
+							break
+						glvl = lvl
+						gmult = mult
+
+					ghp = max(10,int(gmult*(staiv + bsta)))
+					gl_comb = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+					dupe = False
+
+					while gl_comb in gl_out.keys():
+						gl_comb = numpy.nextafter(gl_comb, 1)
+						dupe = True
+
+					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "dupe": dupe }
+
+					if max_cp > 2300:
+						ulvl = 0
+						ul_mult = 0.094
+						ul_mult = math.sqrt( (25010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+						for mult, lvl in d:
+							if (mult > ul_mult ):
+								break
+							ulvl = lvl
+							umult = mult
+
+						uhp = max(10,int(umult*(staiv + bsta)))
+						ul_comb = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
+						dupe = False
+
+						while ul_comb in ul_out.keys():
+							ul_comb = numpy.nextafter(ul_comb, 1)
+							dupe = True
+
+						ul_out[ul_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl, "dupe": dupe }
+
+    	output[num] = []
+    	out = sorted(gl_out.items(), reverse=True)
+    	i = 0
+    	min_norm = ( max_cp + min_cp_g ) / 2
+    	min_low = ( min_norm + min_cp_g ) / 2
+    	lim = medr_g if max_cp < min_norm or int(num) in whitelist_g else maxr_g
+    	lim = minr_g if max_cp < min_low or int(num) in greylist_g else lim
+
+    	for sp, data in out:
+    		if i >= lim:
+    			break
+    		if data['dupe']:
+    			lim -= 1
+    		else:
+    			i += 1
+    		
+    		output[num].append({
+			    'mode': 'great',
+			    'rank': i,
+			    'ivs': [data['atkv'],data['defv'],data['stav']],
+			    'maxlevel': data['lvl'],
+			    'evolutions': evos,
+			    'stat-product': int(sp)
+			    })
+    	if max_cp > min_cp_u:
+	    	out = sorted(ul_out.items(), reverse=True)
+	    	i = 0
+	    	min_norm = ( max_cp + min_cp_u ) / 2
+	    	min_low = ( min_norm + min_cp_u ) / 2
+	    	lim = medr_u if max_cp < min_norm or int(num) in whitelist_u else maxr_u
+	    	lim = minr_u if max_cp < min_low or int(num) in greylist_u else lim
+	    	for sp, data in out:
+	    		if i >= lim:
+	    			break
+	    		if data['dupe']:
+	    			lim -= 1
+	    		else:
+	    			i += 1
+	    		output[num].append({
+				    'mode': 'ultra',
+				    'rank': i,
+				    'ivs': [data['atkv'],data['defv'],data['stav']],
+				    'maxlevel': data['lvl'],
+			    	'evolutions': evos,
+			    	'stat-product': int(sp)
+				    })
+
+with open('rankings.json', 'w') as outfile:
+	json.dump(output, outfile, indent=4, sort_keys=True)
+
