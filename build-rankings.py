@@ -10,21 +10,25 @@ output = {}
 
 ######################################################### SETTINGS ###############################################################
 
+# Cuts the number of pokemon rankings for mons below a certain pokedex number in half if set to true
+new_focus = True
+# Sets the number to cut rankings at - set to cut gen 1-4 now
+focus_num = 495
+
 # settings for great league rankings
 
 # always output these pokemon (by pokedex id number)
 whitelist_g = [202]
 # output a limited amount of these
-greylist_g = [216,217,191,192,322,323,333,334,218,219,316,317,278,279,422,423,420,421,351,406,407,315,51,1,2,3,4,5,6,7,8,9,338,77,78,152,153,154,155,156,157,158,159,160,161,162,177,178,189,200,220,221,252,253,254,255,256,257,258,259,260,262,277,284,286,289,288,287,295,297,340,372,373,387,388,389,390,391,392,393,394,395,400,402,428,428,429,460,
-347,348,95,345,346,140,141,111,112,464,185,140,141]
+greylist_g = [216,217,191,192,322,323,333,334,218,219,316,317,278,279,422,423,420,421,351,406,407,315,51,1,2,3,4,5,6,7,8,9,338,77,78,152,153,154,155,156,157,158,159,160,161,162,177,178,189,200,220,221,252,253,254,255,256,257,258,259,260,262,277,284,286,289,288,287,295,297,340,372,373,387,388,389,390,391,392,393,394,395,400,402,428,428,429,460]
 # never output these
 blacklist_g = []
 # never output non-whitelisted mons with a max cp below this
-min_cp_g = 1250
+min_cp_g = 1220
 # maximum number of results for a standard mon
 maxr_g = 100
 # maximum results for mons that cap under the league's CP limit
-medr_g = 25
+medr_g = 24
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
 minr_g = 10
 
@@ -114,6 +118,8 @@ with open('pogo-mon-data.json') as json_file:
     	min_low = ( min_norm + min_cp_g ) / 2
     	lim = medr_g if max_cp < min_norm or int(num) in whitelist_g else maxr_g
     	lim = minr_g if max_cp < min_low or int(num) in greylist_g else lim
+    	if new_focus:
+    		lim = lim / 2 if num < focus_num else lim
 
     	for sp, data in out:
     		if i >= lim:
