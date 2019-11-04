@@ -30,7 +30,7 @@ maxr_g = 100
 # maximum results for mons that cap under the league's CP limit
 medr_g = 24
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
-minr_g = 10
+minr_g = 6
 
 # settings for ultra league rankings
 
@@ -114,13 +114,20 @@ with open('pogo-mon-data.json') as json_file:
     	output[num] = []
     	out = sorted(gl_out.items(), reverse=True)
     	i = 0
-    	min_norm = ( max_cp + min_cp_g ) / 2
-    	min_low = ( min_norm + min_cp_g ) / 2
-    	lim = medr_g if max_cp < min_norm or int(num) in whitelist_g else maxr_g
-    	lim = minr_g if max_cp < min_low or int(num) in greylist_g else lim
+    	min_norm = 1600
+    	min_low = 1500
+    	lim = medr_g if max_cp < min_norm or int(num) in whitelist_g or int(num) in greylist_g else maxr_g
+    	if max_cp < min_low:
+    		lim = minr_g
+    	else:
+    		min_n = ( max_cp + min_cp_g ) / 2
+    		min_l = ( min_norm + min_cp_g ) / 2
+    		lim = minr_g if max_cp < min_low else lim
+    	
     	if new_focus:
     		lim = lim / 2 if num < focus_num else lim
-
+    	if lim < 100:
+    		print('>>>>>>>>>>>> Limited: '+p['name']+' | Ranks: '+str(lim))
     	for sp, data in out:
     		if i >= lim:
     			break
