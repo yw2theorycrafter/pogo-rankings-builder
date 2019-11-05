@@ -20,7 +20,8 @@ focus_num = 495
 # always output these pokemon (by pokedex id number)
 whitelist_g = [202]
 # output a limited amount of these
-greylist_g = [315,407,422,423,396,397,398,519,520,521,304,305,306,21,22,48,49,74,75,76,16,17,18,265,266,267,268,269,10,11,12,307,308,111,112,464,283,284,293,294,295,23,24,190,424,311,336,427,428,41,42,169,509,510,109,110,69,70,71,13,14,15,276,277,300,301,128,117,118,56,57,52,53,161,162,529,263,264,37,38,399,400,331,332,351,421,19,20,200,201,425,426,355,356,261,262,58,59,198,199,228,229,25,26,353,354,92,93,94,504,505,506,507,508,216,217,191,192,322,323,333,334,218,219,316,317,278,279,422,423,420,421,351,406,407,315,51,1,2,3,4,5,6,7,8,9,338,77,78,152,153,154,155,156,157,158,159,160,161,162,177,178,189,200,220,221,252,253,254,255,256,257,258,259,260,262,277,284,286,289,288,287,295,297,340,372,373,387,388,389,390,391,392,393,394,395,400,402,428,428,429,460]
+greylist_g = [315,407,422,423,396,397,398,519,520,521,304,305,306,21,22,48,49,74,75,76,16,17,18,265,266,267,268,269,10,11,12,307,308,111,112,464,283,284,293,294,295,23,24,190,424,311,336,427,428,41,42,169,509,510,109,110,69,70,71,13,14,15,276,277,300,301,128,117,118,56,57,52,53,161,162,529,263,264,37,38,399,400,331,332,351,421,19,20,200,201,425,426,355,356,261,262,58,59,198,199,228,229,25,26,353,354,92,93,94,504,505,506,507,508,216,217,191,192,322,323,333,334,218,219,316,317,278,279,422,423,420,421,351,406,407,315,51,1,2,4,5,7,8,338,77,78,152,153,155,156,158,159,161,162,177,178,189,200,220,221,252,253,255,256,258,259,262,277,284,286,288,287,295,297,340,372,387,388,390,391,392,393,394,395,400,402,428,428,429,460]
+# Community day IDs: 149, 3, 6, 9, 181, 248, 134, 135, 136, 196, 197, 470, 471, 154, 157, 160, 376, 473, 373, 289, 254, 257, 260, 282, 475, 389, 292, 395, 330, 497, 500, 503
 # never output these
 blacklist_g = []
 # never output non-whitelisted mons with a max cp below this
@@ -32,7 +33,7 @@ medr_g = 50
 # maximum results for mons that are greylisted
 medg_g = 20
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
-minr_g = 6
+minr_g = 10
 
 # settings for ultra league rankings
 
@@ -118,23 +119,19 @@ with open('pogo-mon-data.json') as json_file:
     	out = sorted(gl_out.items(), reverse=True)
     	i = 0
     	min_norm = 1600
-    	min_low = 1490
+    	min_low = 1500
+    	max_sp = out[0][0]
     	lim = maxr_g
-    	lim = medr_g if int(num) in greylist_g else lim
-    	lim = medg_g if max_cp < min_norm or int(num) in whitelist_g else lim
-    	if max_cp < min_low:
-    		lim = minr_g
-    	else:
-    		min_n = ( max_cp + min_cp_g ) / 2
-    		min_l = ( min_norm + min_cp_g ) / 2
-    		lim = medr_g if max_cp < min_n else lim
-    		lim = medg_g if max_cp < min_l else lim
-    	
+    	lim = medr_g if int(num) in whitelist_g or max_sp < 1700000.0 else lim
+    	lim = medg_g if max_cp < min_norm or int(num) in greylist_g or max_sp < 1500000.0 else lim
+    	lim = minr_g if max_cp < min_low else lim
     	if new_focus:
     		lim = lim / 2 if num < focus_num else lim
     	if lim < 100:
     		print('>>>>>>>>>>>> Limited: '+p['name']+' | Ranks: '+str(lim))
     	for sp, data in out:
+    		if i == 0:
+    			max_sp = sp
     		if i >= lim:
     			break
     		if data['dupe']:
@@ -155,8 +152,8 @@ with open('pogo-mon-data.json') as json_file:
     	if max_cp > min_cp_u:
 	    	out = sorted(ul_out.items(), reverse=True)
 	    	i = 0
-	    	min_norm = ( max_cp + min_cp_u ) / 2
-	    	min_low = ( min_norm + min_cp_u ) / 2
+	    	min_norm = 2600
+	    	min_low = 2500
 	    	lim = medr_u if max_cp < min_norm or int(num) in whitelist_u else maxr_u
 	    	lim = minr_u if max_cp < min_low or int(num) in greylist_u else lim
 	    	for sp, data in out:
