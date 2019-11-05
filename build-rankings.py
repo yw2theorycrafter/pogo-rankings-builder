@@ -28,7 +28,9 @@ min_cp_g = 1220
 # maximum number of results for a standard mon
 maxr_g = 100
 # maximum results for mons that cap under the league's CP limit
-medr_g = 24
+medr_g = 50
+# maximum results for mons that are greylisted
+medg_g = 20
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
 minr_g = 6
 
@@ -111,18 +113,22 @@ with open('pogo-mon-data.json') as json_file:
 
 						ul_out[ul_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl, "dupe": dupe }
 
-    	output[num] = []
+    	form = 'unset' if not '(' in p['name'] else p['name'][p['name'].find("(")+1:p['name'].find(")")]
+    	output[p['name']] = []
     	out = sorted(gl_out.items(), reverse=True)
     	i = 0
     	min_norm = 1600
-    	min_low = 1500
-    	lim = medr_g if max_cp < min_norm or int(num) in whitelist_g or int(num) in greylist_g else maxr_g
+    	min_low = 1490
+    	lim = maxr_g
+    	lim = medr_g if int(num) in greylist_g else lim
+    	lim = medg_g if max_cp < min_norm or int(num) in whitelist_g else lim
     	if max_cp < min_low:
     		lim = minr_g
     	else:
     		min_n = ( max_cp + min_cp_g ) / 2
     		min_l = ( min_norm + min_cp_g ) / 2
-    		lim = minr_g if max_cp < min_low else lim
+    		lim = medr_g if max_cp < min_n else lim
+    		lim = medg_g if max_cp < min_l else lim
     	
     	if new_focus:
     		lim = lim / 2 if num < focus_num else lim
@@ -136,7 +142,9 @@ with open('pogo-mon-data.json') as json_file:
     		else:
     			i += 1
     		
-    		output[num].append({
+    		output[p['name']].append({
+	    		'id': num,
+	    		'form': form,
 			    'mode': 'great',
 			    'rank': i,
 			    'ivs': [data['atkv'],data['defv'],data['stav']],
@@ -158,7 +166,9 @@ with open('pogo-mon-data.json') as json_file:
 	    			lim -= 1
 	    		else:
 	    			i += 1
-	    		output[num].append({
+	    		output[p['name']].append({
+	    			'id': num,
+	    			'form': form,
 				    'mode': 'ultra',
 				    'rank': i,
 				    'ivs': [data['atkv'],data['defv'],data['stav']],
