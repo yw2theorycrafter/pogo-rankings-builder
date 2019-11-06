@@ -17,6 +17,9 @@ focus_num = 495
 
 # settings for great league rankings
 
+# Build up a list of attack weights for these pokemon
+atkw_g = [389, 282, 468, 475, 210, 232, 614, 36, 576, 40, 549, 547, 510, 26, 573, 192, 44, 315, 2, 388, 421, 357, 275, 460, 71, 272, 182, 45, 542, 154, 407, 470, 97, 334, 634, 560, 594, 411]
+
 # always output these pokemon (by pokedex id number)
 whitelist_g = [202]
 # output a limited amount of these
@@ -71,6 +74,27 @@ with open('pogo-mon-data.json') as json_file:
     	gl_out = { }
     	ul_out = { }
 
+
+    	gl_atw = { }
+    	processing = []
+    	for atkiv in range(16):
+    		for defiv in range(16):
+    			for staiv in range(16):
+    				glvl = 0
+    				gl_mult = 0.094
+    				gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+    				for mult, lvl in d:
+    					if (mult > gl_mult ):
+    						break
+    					glvl = lvl
+    					gmult = mult
+    				ghp = max(10,int(gmult*(staiv + bsta)))
+    				gl_comb = float((gmult ** 2) * (atkiv + batk))
+    				sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+    				processing.append({ "atkval": gl_comb, "sp": sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl})
+
+
+    	aw_processing = []
     	for atkiv in range(16):
 			for defiv in range(16):
 				for staiv in range(16):
@@ -93,6 +117,10 @@ with open('pogo-mon-data.json') as json_file:
 						dupe = True
 
 					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "dupe": dupe }
+					
+					if int(num) in atkw_g:
+						ar = float((gmult ** 2) * (atkiv + batk))
+						aw_processing.append({ "atkval": ar, "sp": gl_comb, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
 
 					if max_cp > 2300:
 						ulvl = 0
@@ -143,12 +171,49 @@ with open('pogo-mon-data.json') as json_file:
 	    		'id': num,
 	    		'form': form,
 			    'mode': 'great',
+			    'type': 'stat-product',
 			    'rank': i,
 			    'ivs': [data['atkv'],data['defv'],data['stav']],
 			    'maxlevel': data['lvl'],
 			    'evolutions': evos,
 			    'stat-product': int(sp)
 			    })
+    	
+    	if int(num) in atkw_g:
+    		i = 0
+    		s = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
+    		for item in s:
+    			dupe = False
+    			gl_comb = item['atkval'] * 10000000
+    			gl_comb = gl_comb + item['sp']
+    			if gl_comb in gl_out.keys():
+    				dupe = True
+    			while gl_comb in gl_out.keys():
+    				gl_comb = numpy.nextafter(gl_comb, 1)
+    			gl_out[gl_comb] = { "atkv": item['atkv'], "defv": item['defv'], "stav": item['stav'], "lvl": item['lvl'], "dupe": dupe}
+    		out = sorted(gl_out.items(), reverse=True)
+	    	for sp, data in out:
+	    		if i == 0:
+	    			max_sp = sp
+	    		if i >= lim:
+	    			break
+	    		if data['dupe']:
+	    			lim -= 1
+	    		else:
+	    			i += 1
+	    		
+	    		output[p['name']].append({
+		    		'id': num,
+		    		'form': form,
+				    'mode': 'great',
+				    'type': 'attack',
+				    'rank': i,
+				    'ivs': [data['atkv'],data['defv'],data['stav']],
+				    'maxlevel': data['lvl'],
+				    'evolutions': evos,
+				    'stat-product': int(sp)
+				    })
+
     	if max_cp > min_cp_u:
 	    	out = sorted(ul_out.items(), reverse=True)
 	    	i = 0
