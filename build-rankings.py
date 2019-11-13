@@ -119,7 +119,7 @@ with open('pogo-mon-data.json') as json_file:
 					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "dupe": dupe }
 					
 					if int(num) in atkw_g:
-						ar = float((gmult ** 2) * (atkiv + batk))
+						ar = float(gmult * (atkiv + batk))
 						aw_processing.append({ "atkval": ar, "sp": gl_comb, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
 
 					if max_cp > 2300:
