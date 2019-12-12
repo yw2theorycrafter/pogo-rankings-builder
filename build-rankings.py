@@ -17,8 +17,8 @@ focus_num = 495
 
 # settings for great league rankings
 
-# Build up a list of attack weights for these pokemon
-atkw_g = [389, 282, 468, 475, 210, 232, 614, 36, 576, 40, 549, 547, 510, 26, 573, 192, 44, 315, 2, 388, 421, 357, 275, 460, 71, 272, 182, 45, 542, 154, 407, 470, 97, 334, 634, 560, 594, 411]
+# Build up a list of attack weights for pokemon
+atkw = True
 
 # always output these pokemon (by pokedex id number)
 whitelist_g = [202]
@@ -36,7 +36,7 @@ medr_g = 50
 # maximum results for mons that are greylisted
 medg_g = 20
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
-minr_g = 10
+minr_g = 6
 
 # settings for ultra league rankings
 
@@ -49,7 +49,7 @@ blacklist_u = []
 # never output non-whitelisted mons with a max cp below this
 min_cp_u = 2300
 # maximum number of results for a standard mon
-maxr_u = 3
+maxr_u = 20
 # maximum results for mons that cap under the league's CP limit
 medr_u = 2
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
@@ -109,18 +109,18 @@ with open('pogo-mon-data.json') as json_file:
 						gmult = mult
 
 					ghp = max(10,int(gmult*(staiv + bsta)))
-					gl_comb = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+					atkval = float(gmult * (atkiv + batk))
+					mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+					gl_comb = mon_sp + atkval
 					dupe = False
 
 					while gl_comb in gl_out.keys():
 						gl_comb = numpy.nextafter(gl_comb, 1)
 						dupe = True
 
-					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "dupe": dupe }
+					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp, "dupe": dupe }
 					
-					if int(num) in atkw_g:
-						ar = float(gmult * (atkiv + batk))
-						aw_processing.append({ "atkval": ar, "sp": gl_comb, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
+					aw_processing.append({ "atkval": atkval, "sp": mon_sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
 
 					if max_cp > 2300:
 						ulvl = 0
@@ -133,7 +133,9 @@ with open('pogo-mon-data.json') as json_file:
 							umult = mult
 
 						uhp = max(10,int(umult*(staiv + bsta)))
-						ul_comb = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
+						atkval = float(umult * (atkiv + batk))
+						mon_sp = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
+						ul_comb = mon_sp + atkval
 						dupe = False
 
 						while ul_comb in ul_out.keys():
@@ -175,11 +177,10 @@ with open('pogo-mon-data.json') as json_file:
 			    'rank': i,
 			    'ivs': [data['atkv'],data['defv'],data['stav']],
 			    'maxlevel': data['lvl'],
-			    'evolutions': evos,
-			    'stat-product': int(sp)
+			    'evolutions': evos
 			    })
     	
-    	if int(num) in atkw_g:
+    	if atkw:
     		i = 0
     		s = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
     		for item in s:
@@ -210,8 +211,7 @@ with open('pogo-mon-data.json') as json_file:
 				    'rank': i,
 				    'ivs': [data['atkv'],data['defv'],data['stav']],
 				    'maxlevel': data['lvl'],
-				    'evolutions': evos,
-				    'stat-product': int(sp)
+				    'evolutions': evos
 				    })
 
     	if max_cp > min_cp_u:
@@ -232,11 +232,11 @@ with open('pogo-mon-data.json') as json_file:
 	    			'id': num,
 	    			'form': form,
 				    'mode': 'ultra',
+				    'type': 'stat-product',
 				    'rank': i,
 				    'ivs': [data['atkv'],data['defv'],data['stav']],
 				    'maxlevel': data['lvl'],
-			    	'evolutions': evos,
-			    	'stat-product': int(sp)
+			    	'evolutions': evos
 				    })
 
 with open('rankings.json', 'w') as outfile:
