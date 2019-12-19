@@ -4,7 +4,10 @@ import json
 import sys
 
 mult_dict = { 0.094: 1.0,0.135137432: 1.5,0.16639787: 2.0,0.192650919: 2.5,0.21573247: 3.0,0.236572661: 3.5,0.25572005: 4.0,0.273530381: 4.5,0.29024988: 5.0,0.306057377: 5.5,0.3210876: 6.0,0.335445036: 6.5,0.34921268: 7.0,0.362457751: 7.5,0.37523559: 8.0,0.387592406: 8.5,0.39956728: 9.0,0.411193551: 9.5,0.42250001: 10.0,0.432926419: 10.5,0.44310755: 11.0,0.4530599578: 11.5,0.46279839: 12.0,0.472336083: 12.5,0.48168495: 13.0,0.4908558: 13.5,0.49985844: 14.0,0.508701765: 14.5,0.51739395: 15.0,0.525942511: 15.5,0.53435433: 16.0,0.542635767: 16.5,0.55079269: 17.0,0.558830576: 17.5,0.56675452: 18.0,0.574569153: 18.5,0.58227891: 19.0,0.589887917: 19.5,0.59740001: 20.0,0.604818814: 20.5,0.61215729: 21.0,0.619399365: 21.5,0.62656713: 22.0,0.633644533: 22.5,0.64065295: 23.0,0.647576426: 23.5,0.65443563: 24.0,0.661214806: 24.5,0.667934: 25.0,0.674577537: 25.5,0.68116492: 26.0,0.687680648: 26.5,0.69414365: 27.0,0.700538673: 27.5,0.70688421: 28.0,0.713164996: 28.5,0.71939909: 29.0,0.725571552: 29.5,0.7317: 30.0,0.734741009: 30.5,0.73776948: 31.0,0.740785574: 31.5,0.74378943: 32.0,0.746781211: 32.5,0.74976104: 33.0,0.752729087: 33.5,0.75568551: 34.0,0.758630378: 34.5,0.76156384: 35.0,0.764486065: 35.5,0.76739717: 36.0,0.770297266: 36.5,0.7731865: 37.0,0.776064962: 37.5,0.77893275: 38.0,0.781790055: 38.5,0.78463697: 39.0,0.787473578: 39.5,0.79030001: 40.0,0.79030001: 40 }
-d = sorted(mult_dict.iteritems())
+mult_dict_buddy = { 0.094: 1.0,0.135137432: 1.5,0.16639787: 2.0,0.192650919: 2.5,0.21573247: 3.0,0.236572661: 3.5,0.25572005: 4.0,0.273530381: 4.5,0.29024988: 5.0,0.306057377: 5.5,0.3210876: 6.0,0.335445036: 6.5,0.34921268: 7.0,0.362457751: 7.5,0.37523559: 8.0,0.387592406: 8.5,0.39956728: 9.0,0.411193551: 9.5,0.42250001: 10.0,0.432926419: 10.5,0.44310755: 11.0,0.4530599578: 11.5,0.46279839: 12.0,0.472336083: 12.5,0.48168495: 13.0,0.4908558: 13.5,0.49985844: 14.0,0.508701765: 14.5,0.51739395: 15.0,0.525942511: 15.5,0.53435433: 16.0,0.542635767: 16.5,0.55079269: 17.0,0.558830576: 17.5,0.56675452: 18.0,0.574569153: 18.5,0.58227891: 19.0,0.589887917: 19.5,0.59740001: 20.0,0.604818814: 20.5,0.61215729: 21.0,0.619399365: 21.5,0.62656713: 22.0,0.633644533: 22.5,0.64065295: 23.0,0.647576426: 23.5,0.65443563: 24.0,0.661214806: 24.5,0.667934: 25.0,0.674577537: 25.5,0.68116492: 26.0,0.687680648: 26.5,0.69414365: 27.0,0.700538673: 27.5,0.70688421: 28.0,0.713164996: 28.5,0.71939909: 29.0,0.725571552: 29.5,0.7317: 30.0,0.734741009: 30.5,0.73776948: 31.0,0.740785574: 31.5,0.74378943: 32.0,0.746781211: 32.5,0.74976104: 33.0,0.752729087: 33.5,0.75568551: 34.0,0.758630378: 34.5,0.76156384: 35.0,0.764486065: 35.5,0.76739717: 36.0,0.770297266: 36.5,0.7731865: 37.0,0.776064962: 37.5,0.77893275: 38.0,0.781790055: 38.5,0.78463697: 39.0,0.787473578: 39.5,0.79030001: 40.0, 0.79530001: 41.0, 0.8003: 42.0, 0.8053: 43.0, 0.81029999: 44.0, 0.81529999: 45.0 }
+
+standard_mult = sorted(mult_dict.iteritems())
+buddy_mult = sorted(mult_dict_buddy.iteritems())
 
 output = {}
 
@@ -19,7 +22,8 @@ focus_num = 495
 
 # Build up a list of attack weights for pokemon
 atkw = True
-
+# Build up a list of buddy weights for pokemon
+bdw = True
 # always output these pokemon (by pokedex id number)
 whitelist_g = [202]
 # output a limited amount of these
@@ -66,44 +70,24 @@ with open('pogo-mon-data.json') as json_file:
     	num = int(p['id'])
     	evos = p['evolutions']
 
-    	max_cp = max(10,int( 0.6245741058 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10))
+    	max_cp = int( 0.6245741058 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
+    	buddy_max_cp = int( 0.66471407369 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
     	if max_cp < min_cp_g and not int(num) in whitelist_g:
     		print('Skip: '+p['name']+' | Max CP: '+str(max_cp))
     		continue
 
-    	gl_out = { }
-    	ul_out = { }
-
-
-    	gl_atw = { }
-    	processing = []
-    	for atkiv in range(16):
-    		for defiv in range(16):
-    			for staiv in range(16):
-    				glvl = 0
-    				gl_mult = 0.094
-    				gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-    				for mult, lvl in d:
-    					if (mult > gl_mult ):
-    						break
-    					glvl = lvl
-    					gmult = mult
-    				ghp = max(10,int(gmult*(staiv + bsta)))
-    				gl_comb = float((gmult ** 2) * (atkiv + batk))
-    				sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
-    				processing.append({ "atkval": gl_comb, "sp": sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl})
-
-
+    	gl_out = []
+    	glb_out = []
+    	ul_out = []
     	aw_processing = []
     	for atkiv in range(16):
 			for defiv in range(16):
 				for staiv in range(16):
 
 					glvl = 0
-					gl_mult = 0.094
 					gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-					for mult, lvl in d:
-						if (mult > gl_mult ):
+					for mult, lvl in standard_mult:
+						if ( mult > gl_mult ):
 							break
 						glvl = lvl
 						gmult = mult
@@ -111,22 +95,30 @@ with open('pogo-mon-data.json') as json_file:
 					ghp = max(10,int(gmult*(staiv + bsta)))
 					atkval = float(gmult * (atkiv + batk))
 					mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
-					gl_comb = mon_sp + atkval
-					dupe = False
 
-					while gl_comb in gl_out.keys():
-						gl_comb = numpy.nextafter(gl_comb, 1)
-						dupe = True
-
-					gl_out[gl_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp, "dupe": dupe }
+					gl_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp })
 					
 					aw_processing.append({ "atkval": atkval, "sp": mon_sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
+
+					if bdw and max_cp < 1700 and glvl > 30.0:
+						glvl = 0
+						gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+						for mult, lvl in buddy_mult:
+							if ( mult > gl_mult ):
+								break
+							glvl = lvl
+							gmult = mult
+						ghp = max(10,int(gmult*(staiv + bsta)))
+						atkval = float(gmult * (atkiv + batk))
+						mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+
+						glb_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp })
 
 					if max_cp > 2300:
 						ulvl = 0
 						ul_mult = 0.094
 						ul_mult = math.sqrt( (25010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-						for mult, lvl in d:
+						for mult, lvl in standard_mult:
 							if (mult > ul_mult ):
 								break
 							ulvl = lvl
@@ -135,22 +127,16 @@ with open('pogo-mon-data.json') as json_file:
 						uhp = max(10,int(umult*(staiv + bsta)))
 						atkval = float(umult * (atkiv + batk))
 						mon_sp = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
-						ul_comb = mon_sp + atkval
-						dupe = False
 
-						while ul_comb in ul_out.keys():
-							ul_comb = numpy.nextafter(ul_comb, 1)
-							dupe = True
-
-						ul_out[ul_comb] = { "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl, "dupe": dupe }
+						ul_out.append({ "sp": mon_sp, "atkval": atkval, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl })
 
     	form = 'unset' if not '(' in p['name'] else p['name'][p['name'].find("(")+1:p['name'].find(")")]
     	output[p['name']] = []
-    	out = sorted(gl_out.items(), reverse=True)
+    	out = sorted(gl_out, key = lambda x: (x['sp'], x['atkval']), reverse=True)
     	i = 0
     	min_norm = 1600
     	min_low = 1500
-    	max_sp = out[0][0]
+    	max_sp = out[0]
     	lim = maxr_g
     	lim = medr_g if int(num) in whitelist_g or max_sp < 1700000.0 else lim
     	lim = medg_g if max_cp < min_norm or int(num) in greylist_g or max_sp < 1500000.0 else lim
@@ -159,15 +145,15 @@ with open('pogo-mon-data.json') as json_file:
     		lim = lim / 2 if num < focus_num else lim
     	if lim < 100:
     		print('>>>>>>>>>>>> Limited: '+p['name']+' | Ranks: '+str(lim))
-    	for sp, data in out:
-    		if i == 0:
-    			max_sp = sp
+    	last_sp = 0.0
+    	last_atk = 0.0
+    	for data in out:
     		if i >= lim:
     			break
-    		if data['dupe']:
-    			lim -= 1
-    		else:
+    		elif last_sp != data['sp'] or last_atk != data['atkval']:
     			i += 1
+    		last_sp = data['sp']
+    		last_atk = data['atkval']
     		
     		output[p['name']].append({
 	    		'id': num,
@@ -182,50 +168,66 @@ with open('pogo-mon-data.json') as json_file:
     	
     	if atkw:
     		i = 0
-    		s = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
-    		for item in s:
-    			dupe = False
-    			gl_comb = item['atkval'] * 10000000
-    			gl_comb = gl_comb + item['sp']
-    			if gl_comb in gl_out.keys():
-    				dupe = True
-    			while gl_comb in gl_out.keys():
-    				gl_comb = numpy.nextafter(gl_comb, 1)
-    			gl_out[gl_comb] = { "atkv": item['atkv'], "defv": item['defv'], "stav": item['stav'], "lvl": item['lvl'], "dupe": dupe}
-    		out = sorted(gl_out.items(), reverse=True)
-	    	for sp, data in out:
-	    		if i == 0:
-	    			max_sp = sp
-	    		if i >= lim:
-	    			break
-	    		if data['dupe']:
-	    			lim -= 1
-	    		else:
-	    			i += 1
-	    		
-	    		output[p['name']].append({
-		    		'id': num,
-		    		'form': form,
-				    'mode': 'great',
-				    'type': 'attack',
-				    'rank': i,
-				    'ivs': [data['atkv'],data['defv'],data['stav']],
-				    'maxlevel': data['lvl'],
-				    'evolutions': evos
-				    })
+    		out = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
+    		last_sp = 0.0
+    		last_atk = 0.0
+    		for data in out:
+    			if i == 0 and data['atkv'] >= 14 and data['defv'] >= 14 and data['stav'] >= 14:
+    				break
+    			if i >= lim:
+    				break
+    			elif last_sp != data['sp'] or last_atk != data['atkval']:
+    				i += 1
+    			last_sp = data['sp']
+    			last_atk = data['atkval']
+    			output[p['name']].append({
+    				'id': num,
+    				'form': form,
+    				'mode': 'great',
+    				'type': 'attack',
+    				'rank': i,
+    				'ivs': [data['atkv'],data['defv'],data['stav']],
+    				'maxlevel': data['lvl'],
+    				'evolutions': evos
+    				})
+    	
+    	if bdw:
+    		i = 0
+    		out = sorted(glb_out, key = lambda x: (x['atkval'], x['sp']), reverse=True)
+    		last_sp = 0.0
+    		last_atk = 0.0
+    		for data in out:
+    			if i == 0 and ( ( data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 15 ) or data['lvl'] <= 40.0 ):
+    				break
+    			if i == 0:
+    				print('Buddy Rankings: ' + p['name'])
+    			if i >= lim:
+    				break
+    			elif last_sp != data['sp'] or last_atk != data['atkval']:
+    				i += 1
+    			last_sp = data['sp']
+    			last_atk = data['atkval']
+    			output[p['name']].append({
+    				'id': num,
+    				'form': form,
+    				'mode': 'great',
+    				'type': 'buddy',
+    				'rank': i,
+    				'ivs': [data['atkv'],data['defv'],data['stav']],
+    				'maxlevel': data['lvl'],
+    				'evolutions': evos
+    				})
 
     	if max_cp > min_cp_u:
-	    	out = sorted(ul_out.items(), reverse=True)
+    		out = sorted(ul_out, key = lambda x: (x['atkval'], x['sp']), reverse=True)
 	    	i = 0
 	    	min_norm = 2600
 	    	min_low = 2500
 	    	lim = medr_u if max_cp < min_norm or int(num) in whitelist_u else maxr_u
 	    	lim = minr_u if max_cp < min_low or int(num) in greylist_u else lim
-	    	for sp, data in out:
+	    	for data in out:
 	    		if i >= lim:
 	    			break
-	    		if data['dupe']:
-	    			lim -= 1
 	    		else:
 	    			i += 1
 	    		output[p['name']].append({
