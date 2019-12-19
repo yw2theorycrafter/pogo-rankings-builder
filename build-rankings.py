@@ -196,7 +196,7 @@ with open('pogo-mon-data.json') as json_file:
     	if bdw:
     		lim = 6
     		i = 0
-    		out = sorted(glb_out, key = lambda x: (x['atkval'], x['sp']), reverse=True)
+    		out = sorted(glb_out, key = lambda x: (x['sp'], x['atkval']), reverse=True)
     		last_sp = 0.0
     		last_atk = 0.0
     		for data in out:
