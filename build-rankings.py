@@ -20,8 +20,10 @@ focus_num = 495
 
 # settings for great league rankings
 
+# Attack weighted pokemon to output
+atkw_g = [389, 282, 468, 475, 210, 232, 614, 36, 576, 40, 549, 547, 510, 26, 573, 192, 44, 315, 2, 388, 421, 357, 275, 460, 71, 272, 182, 45, 542, 154, 407, 470, 97, 334, 634, 560, 594, 411]
 # Build up a list of attack weights for pokemon
-atkw = True
+atkw = False
 # Build up a list of buddy weights for pokemon
 bdw = True
 # always output these pokemon (by pokedex id number)
@@ -34,13 +36,13 @@ blacklist_g = []
 # never output non-whitelisted mons with a max cp below this
 min_cp_g = 1220
 # maximum number of results for a standard mon
-maxr_g = 100
+maxr_g = 50
 # maximum results for mons that cap under the league's CP limit
-medr_g = 50
+medr_g = 20
 # maximum results for mons that are greylisted
-medg_g = 20
+medg_g = 10
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
-minr_g = 6
+minr_g = 3
 
 # settings for ultra league rankings
 
@@ -53,7 +55,7 @@ blacklist_u = []
 # never output non-whitelisted mons with a max cp below this
 min_cp_u = 2300
 # maximum number of results for a standard mon
-maxr_u = 20
+maxr_u = 3
 # maximum results for mons that cap under the league's CP limit
 medr_u = 2
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
@@ -166,7 +168,7 @@ with open('pogo-mon-data.json') as json_file:
 			    'evolutions': evos
 			    })
     	
-    	if atkw:
+    	if atkw and int(num) in atkw_g:
     		i = 0
     		out = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
     		last_sp = 0.0
@@ -192,6 +194,7 @@ with open('pogo-mon-data.json') as json_file:
     				})
     	
     	if bdw:
+    		lim = 6
     		i = 0
     		out = sorted(glb_out, key = lambda x: (x['atkval'], x['sp']), reverse=True)
     		last_sp = 0.0
