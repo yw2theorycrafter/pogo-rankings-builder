@@ -18,7 +18,7 @@ output = {}
 # Mainly for debugging. Turn everything to False before running.
 verbose = True
 debug = False
-print_optimal = True
+print_optimal = False
 
 spip_print = ["bulbasaur", "charmander", "squirtle", "pidgey", "rattata", "ekans", "sandshrew", "clefairy", "vulpix", "jigglypuff", "zubat", "paras", "psyduck", "abra", "bellsprout", "geodude", "ponyta", "seel", "gastly", "drowzee", "krabby", "voltorb", "cubone", "hitmonchan", "hitmonlee", "lickitung", "koffing", "rhyhorn", "chansey", "tangela", "goldeen", "staryu", "scyther", "jynx", "electabuzz", "magmar", "pinsir", "lapras", "omanyte", "kabuto", "aerodactyl", "snorlax", "dratini", "chikorita", "cyndaquil", "totodile", "togetic", "mareep", "yanma", "girafarig", "pineco", "dunsparce", "qwilfish", "sneasel", "houndour", "phanpy", "stantler", "hitmontop", "miltank", "larvitar", "treecko", "mudkip", "zigzagoon", "wurmple", "lotad", "wingull", "ralts", "surskit", "shroomish", "slakoth", "nincada", "mawile", "carvanha", "wailmer", "spoink", "trapinch", "cacnea", "solrock", "corphish", "lileep", "anorith", "feebas", "castform", "duskull", "chimecho", "absol", "spheal", "clamperl", "bagon", "beldum", "turtwig", "chimchar", "piplup", "kricketot", "cranidos", "shieldon", "shellos", "glameow", "stunky", "gible", "hippopotas", "Skorupi", "snover", "snivy", "tepig", "oshawott", "panpour", "ferroseed", "litwick", "golett", "deino"]
 spip_print = map(lambda x:x.lower(),spip_print)
@@ -301,8 +301,7 @@ with open('pogo-mon-data.json') as json_file:
 				    'maxlevel': data['lvl'],
 			    	'evolutions': evos
 				    })
-if debug or print_optimal:
-	exit()
+
 with open('rankings.json', 'w') as outfile:
 	json.dump(output, outfile, indent=4, sort_keys=True)
 
