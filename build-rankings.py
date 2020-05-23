@@ -27,7 +27,7 @@ spip_print = []
 # Include mega evolutions
 megas = False
 # Cuts the number of pokemon rankings for mons below a certain pokedex number in half if set to true
-new_focus = True
+new_focus = False
 # Sets the number to cut rankings at - set to cut gen 1-4 now
 focus_num = 495
 
@@ -81,15 +81,15 @@ evo_map = {}
 with open('pogo-mon-data.json') as json_file:  
     data = json.load(json_file)
     for p in data:
-    	mon = p['name']
-    	evos = p['evolutions']
-    	for evo in evos:
-    		if not evo in evo_map:
-    			evo_map[evo] = []
-    		evo_map[evo].append(mon)
-    	if not mon in evo_map:
-    		evo_map[mon] = []
-    	evo_map[mon].append(mon)
+        mon = p['name']
+        evos = p['evolutions']
+        for evo in evos:
+            if not evo in evo_map:
+                evo_map[evo] = []
+            evo_map[evo].append(mon)
+        if not mon in evo_map:
+            evo_map[mon] = []
+        evo_map[mon].append(mon)
 
 pbuffer = []
 def print_optimal(mon, data, evo_map, print_optimal):
@@ -102,7 +102,7 @@ def print_optimal(mon, data, evo_map, print_optimal):
             if data['lvl'] > 40.0 and data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 14:
                 data['stav'] = 15
                 if debug == False:
-                	continue
+                    continue
             plvl = int(data['lvl'])
             plvl = str(plvl) if plvl <= 35 else '35'
             #text = p['name'] + ' | Level: ' + str(data['lvl']) + ' | IVs: ' + str(data['atkv']) + ' ' + str(data['defv']) + ' ' + str(data['stav'])
@@ -114,194 +114,197 @@ def print_optimal(mon, data, evo_map, print_optimal):
 with open('pogo-mon-data.json') as json_file:  
     data = json.load(json_file)
     for p in data:
-    	batk = int(p['atk'])
-    	bdef = int(p['def'])
-    	bsta = int(p['sta'])
-    	num = int(p['id'])
-    	evos = p['evolutions']
+        batk = int(p['atk'])
+        bdef = int(p['def'])
+        bsta = int(p['sta'])
+        num = int(p['id'])
+        evos = p['evolutions']
 
-    	max_cp = int( 0.6245741058 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
-    	buddy_max_cp = int( 0.66471407369 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
-    	if max_cp < min_cp_g and not int(num) in whitelist_g:
-    		if verbose:
-    			print('Skip: '+p['name']+' | Max CP: '+str(max_cp))
-    		continue
+        max_cp = int( 0.6245741058 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
+        buddy_max_cp = int( 0.66471407369 * (batk+15) * math.sqrt((bdef+15)*(bsta+15))/10)
+        if max_cp < min_cp_g and not int(num) in whitelist_g:
+            if verbose:
+                print('Skip: '+p['name']+' | Max CP: '+str(max_cp))
+            continue
 
-    	gl_out = []
-    	glb_out = []
-    	ul_out = []
-    	aw_processing = []
-    	for atkiv in range(16):
-			for defiv in range(16):
-				for staiv in range(16):
+        gl_out = []
+        glb_out = []
+        ul_out = []
+        aw_processing = []
+        for atkiv in range(16):
+            for defiv in range(16):
+                for staiv in range(16):
 
-					glvl = 0
-					gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-					for mult, lvl in standard_mult:
-						if ( mult > gl_mult ):
-							break
-						glvl = lvl
-						gmult = mult
+                    glvl = 0
+                    gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+                    for mult, lvl in standard_mult:
+                        if ( mult > gl_mult ):
+                            break
+                        glvl = lvl
+                        gmult = mult
 
-					ghp = max(10,int(gmult*(staiv + bsta)))
-					atkval = float(gmult * (atkiv + batk))
-					mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+                    ghp = max(10,int(gmult*(staiv + bsta)))
+                    atkval = float(gmult * (atkiv + batk))
+                    mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+                    ivcomb = atkiv + staiv + defiv + glvl
 
-					gl_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp })
-					
-					aw_processing.append({ "atkval": atkval, "sp": mon_sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl })
+                    gl_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp, "ivcomb": ivcomb })
+                    
+                    aw_processing.append({ "atkval": atkval, "sp": mon_sp, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "ivcomb": ivcomb })
 
-					if bdw and max_cp < 1700 and glvl > 30.0:
-						glvl = 0
-						gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-						for mult, lvl in buddy_mult:
-							if ( mult > gl_mult ):
-								break
-							glvl = lvl
-							gmult = mult
-						ghp = max(10,int(gmult*(staiv + bsta)))
-						atkval = float(gmult * (atkiv + batk))
-						mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+                    if bdw and max_cp < 1700 and glvl > 30.0:
+                        glvl = 0
+                        gl_mult = math.sqrt( (15010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+                        for mult, lvl in buddy_mult:
+                            if ( mult > gl_mult ):
+                                break
+                            glvl = lvl
+                            gmult = mult
+                        ghp = max(10,int(gmult*(staiv + bsta)))
+                        atkval = float(gmult * (atkiv + batk))
+                        mon_sp = float((gmult ** 2) * (atkiv + batk) * (defiv + bdef) * ghp)
+                        ivcomb = atkiv + staiv + defiv + glvl
 
-						glb_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp })
+                        glb_out.append({ "mult": gmult, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": glvl, "atkval": atkval, "sp": mon_sp, "ivcomb": ivcomb })
 
-					if max_cp > 2300:
-						ulvl = 0
-						ul_mult = 0.094
-						ul_mult = math.sqrt( (25010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
-						for mult, lvl in standard_mult:
-							if (mult > ul_mult ):
-								break
-							ulvl = lvl
-							umult = mult
+                    if max_cp > 2300:
+                        ulvl = 0
+                        ul_mult = 0.094
+                        ul_mult = math.sqrt( (25010.0/(batk+atkiv)/ math.sqrt((bdef+defiv)*(bsta+staiv)) ) )
+                        for mult, lvl in standard_mult:
+                            if (mult > ul_mult ):
+                                break
+                            ulvl = lvl
+                            umult = mult
 
-						uhp = max(10,int(umult*(staiv + bsta)))
-						atkval = float(umult * (atkiv + batk))
-						mon_sp = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
+                        uhp = max(10,int(umult*(staiv + bsta)))
+                        atkval = float(umult * (atkiv + batk))
+                        mon_sp = float((umult ** 2) * (atkiv + batk) * (defiv + bdef) * uhp)
+                        ivcomb = atkiv + staiv + defiv + ulvl
 
-						ul_out.append({ "sp": mon_sp, "atkval": atkval, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl })
+                        ul_out.append({ "sp": mon_sp, "atkval": atkval, "atkv": atkiv, "defv": defiv, "stav": staiv, "lvl": ulvl, "ivcomb": ivcomb })
 
-    	form = 'unset' if not '(' in p['name'] else p['name'][p['name'].find("(")+1:p['name'].find(")")]
-    	output[p['name']] = []
-    	out = sorted(gl_out, key = lambda x: (x['sp'], x['atkval']), reverse=True)
-    	i = 0
-    	min_norm = 1600
-    	min_low = 1500
-    	max_sp = out[0]
-    	lim = maxr_g
-    	lim = medr_g if int(num) in whitelist_g or max_sp < 1700000.0 else lim
-    	lim = medg_g if max_cp < min_norm or int(num) in greylist_g or max_sp < 1500000.0 else lim
-    	lim = minr_g if max_cp < min_low else lim
-    	if new_focus:
-    		lim = lim / 2 if num < focus_num else lim
-    	if lim < maxr_g and verbose:
-    		print('Limited: '+p['name']+' | Ranks: '+str(lim))
-    	last_sp = 0.0
-    	last_atk = 0.0
-    	for data in out:
-    		if i == 0:
-    			print_optimal(p['name'], data, evo_map, print_optimal)
-    		if i >= lim:
-    			break
-    		elif last_sp != data['sp'] or last_atk != data['atkval']:
-    			i += 1
-    		last_sp = data['sp']
-    		last_atk = data['atkval']
-    		
-    		output[p['name']].append({
-	    		'id': num,
-	    		'form': form,
-			    'mode': 'great',
-			    'type': 'stat-product',
-			    'rank': i,
-			    'ivs': [data['atkv'],data['defv'],data['stav']],
-			    'maxlevel': data['lvl'],
-			    'evolutions': evos
-			    })
-    	
-    	if atkw and int(num) in atkw_g:
-    		i = 0
-    		out = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp']), reverse=True)
-    		last_sp = 0.0
-    		last_atk = 0.0
-    		for data in out:
-    			if i == 0 and data['atkv'] >= 14 and data['defv'] >= 14 and data['stav'] >= 14:
-    				break
-    			if i >= lim:
-    				break
-    			elif last_sp != data['sp'] or last_atk != data['atkval']:
-    				i += 1
-    			last_sp = data['sp']
-    			last_atk = data['atkval']
-    			output[p['name']].append({
-    				'id': num,
-    				'form': form,
-    				'mode': 'great',
-    				'type': 'attack',
-    				'rank': i,
-    				'ivs': [data['atkv'],data['defv'],data['stav']],
-    				'maxlevel': data['lvl'],
-    				'evolutions': evos
-    				})
-    	
-    	if bdw:
-    		lim = 5
-    		i = 0
-    		out = sorted(glb_out, key = lambda x: (x['sp'], x['atkval']), reverse=True)
-    		last_sp = 0.0
-    		last_atk = 0.0
-    		for data in out:
-    			if data['lvl'] > 40.0 and i == 0 and debug:
-    				cp = int( data['mult'] * data['mult'] * (batk+data['atkv']) * math.sqrt((bdef+data['defv'])*(bsta+data['stav']))/10)
-    				color = 'red' if data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 15 else 'cyan'
-    				color = 'magenta' if float(int(data['lvl'])) != data['lvl'] else color
-    				print(colored(p['name'] + ' | Level: ' + str(data['lvl']) + ' | CP: ' + str(cp) + ' | IVs: ' + str(data['atkv']) + ' ' + str(data['defv']) + ' ' + str(data['stav']), color) )
-    			if i == 0:
-    				if ( data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 15 ) or data['lvl'] <= 40.0:
-    					break
-    				if verbose:
-    					print('Buddy Rankings: ' + p['name'])
-    				print_optimal(p['name'], data, evo_map, print_optimal)
-    			if i >= lim:
-    				break
-    			elif last_sp != data['sp'] or last_atk != data['atkval']:
-    				i += 1
-    			last_sp = data['sp']
-    			last_atk = data['atkval']
-    			output[p['name']].append({
-    				'id': num,
-    				'form': form,
-    				'mode': 'great',
-    				'type': 'buddy',
-    				'rank': i,
-    				'ivs': [data['atkv'],data['defv'],data['stav']],
-    				'maxlevel': data['lvl'],
-    				'evolutions': evos
-    				})
+        form = 'unset' if not '(' in p['name'] else p['name'][p['name'].find("(")+1:p['name'].find(")")]
+        output[p['name']] = []
+        out = sorted(gl_out, key = lambda x: (x['sp'], x['atkval'], x['ivcomb']), reverse=True)
+        i = 0
+        min_norm = 1600
+        min_low = 1500
+        max_sp = out[0]
+        lim = maxr_g
+        lim = medr_g if int(num) in whitelist_g or max_sp < 1700000.0 else lim
+        lim = medg_g if max_cp < min_norm or int(num) in greylist_g or max_sp < 1500000.0 else lim
+        lim = minr_g if max_cp < min_low else lim
+        if new_focus:
+            lim = lim / 2 if num < focus_num else lim
+        if lim < maxr_g and verbose:
+            print('Limited: '+p['name']+' | Ranks: '+str(lim))
+        last_sp = 0.0
+        last_atk = 0.0
+        for data in out:
+            if i == 0:
+                print_optimal(p['name'], data, evo_map, print_optimal)
+            if i >= lim:
+                break
+            elif last_sp != data['sp'] or last_atk != data['atkval']:
+                i += 1
+            last_sp = data['sp']
+            last_atk = data['atkval']
+            
+            output[p['name']].append({
+                'id': num,
+                'form': form,
+                'mode': 'great',
+                'type': 'stat-product',
+                'rank': i,
+                'ivs': [data['atkv'],data['defv'],data['stav']],
+                'maxlevel': data['lvl'],
+                'evolutions': evos
+                })
+        
+        if atkw and int(num) in atkw_g:
+            i = 0
+            out = sorted(aw_processing, key = lambda x: (x['atkval'], x['sp'], x['ivcomb']), reverse=True)
+            last_sp = 0.0
+            last_atk = 0.0
+            for data in out:
+                if i == 0 and data['atkv'] >= 14 and data['defv'] >= 14 and data['stav'] >= 14:
+                    break
+                if i >= lim:
+                    break
+                elif last_sp != data['sp'] or last_atk != data['atkval']:
+                    i += 1
+                last_sp = data['sp']
+                last_atk = data['atkval']
+                output[p['name']].append({
+                    'id': num,
+                    'form': form,
+                    'mode': 'great',
+                    'type': 'attack',
+                    'rank': i,
+                    'ivs': [data['atkv'],data['defv'],data['stav']],
+                    'maxlevel': data['lvl'],
+                    'evolutions': evos
+                    })
+        
+        if bdw:
+            lim = 5
+            i = 0
+            out = sorted(glb_out, key = lambda x: (x['sp'], x['atkval'], x['ivcomb']), reverse=True)
+            last_sp = 0.0
+            last_atk = 0.0
+            for data in out:
+                if data['lvl'] > 40.0 and i == 0 and debug:
+                    cp = int( data['mult'] * data['mult'] * (batk+data['atkv']) * math.sqrt((bdef+data['defv'])*(bsta+data['stav']))/10)
+                    color = 'red' if data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 15 else 'cyan'
+                    color = 'magenta' if float(int(data['lvl'])) != data['lvl'] else color
+                    print(colored(p['name'] + ' | Level: ' + str(data['lvl']) + ' | CP: ' + str(cp) + ' | IVs: ' + str(data['atkv']) + ' ' + str(data['defv']) + ' ' + str(data['stav']), color) )
+                if i == 0:
+                    if ( data['atkv'] == 15 and data['defv'] == 15 and data['stav'] == 15 ) or data['lvl'] <= 40.0:
+                        break
+                    if verbose:
+                        print('Buddy Rankings: ' + p['name'])
+                    print_optimal(p['name'], data, evo_map, print_optimal)
+                if i >= lim:
+                    break
+                elif last_sp != data['sp'] or last_atk != data['atkval']:
+                    i += 1
+                last_sp = data['sp']
+                last_atk = data['atkval']
+                output[p['name']].append({
+                    'id': num,
+                    'form': form,
+                    'mode': 'great',
+                    'type': 'buddy',
+                    'rank': i,
+                    'ivs': [data['atkv'],data['defv'],data['stav']],
+                    'maxlevel': data['lvl'],
+                    'evolutions': evos
+                    })
 
-    	if max_cp > min_cp_u:
-    		out = sorted(ul_out, key = lambda x: (x['atkval'], x['sp']), reverse=True)
-	    	i = 0
-	    	min_norm = 2600
-	    	min_low = 2500
-	    	lim = medr_u if max_cp < min_norm or int(num) in whitelist_u else maxr_u
-	    	lim = minr_u if max_cp < min_low or int(num) in greylist_u else lim
-	    	for data in out:
-	    		if i >= lim:
-	    			break
-	    		else:
-	    			i += 1
-	    		output[p['name']].append({
-	    			'id': num,
-	    			'form': form,
-				    'mode': 'ultra',
-				    'type': 'stat-product',
-				    'rank': i,
-				    'ivs': [data['atkv'],data['defv'],data['stav']],
-				    'maxlevel': data['lvl'],
-			    	'evolutions': evos
-				    })
+        if max_cp > min_cp_u:
+            out = sorted(ul_out, key = lambda x: (x['sp'], x['atkval'], x['ivcomb']), reverse=True)
+            i = 0
+            min_norm = 2600
+            min_low = 2500
+            lim = medr_u if max_cp < min_norm or int(num) in whitelist_u else maxr_u
+            lim = minr_u if max_cp < min_low or int(num) in greylist_u else lim
+            for data in out:
+                if i >= lim:
+                    break
+                else:
+                    i += 1
+                output[p['name']].append({
+                    'id': num,
+                    'form': form,
+                    'mode': 'ultra',
+                    'type': 'stat-product',
+                    'rank': i,
+                    'ivs': [data['atkv'],data['defv'],data['stav']],
+                    'maxlevel': data['lvl'],
+                    'evolutions': evos
+                    })
 
 with open('rankings.json', 'w') as outfile:
-	json.dump(output, outfile, indent=4, sort_keys=True)
+    json.dump(output, outfile, indent=4, sort_keys=True)
 
