@@ -453,17 +453,17 @@
         "def": "115", 
         "evolutions": [], 
         "id": "83", 
-        "name": "Farfetchd", 
+        "name": "Farfetch'd", 
         "sta": "141"
     }, 
     {
         "atk": "174", 
         "def": "114", 
         "evolutions": [
-            "Sirfetchd"
+            "Sirfetch'd"
         ], 
         "id": "83", 
-        "name": "Farfetchd (Galarian)", 
+        "name": "Farfetch'd (Galarian)", 
         "sta": "141"
     }, 
     {
@@ -471,7 +471,7 @@
         "def": "176", 
         "evolutions": [], 
         "id": "865", 
-        "name": "Sirfetchd", 
+        "name": "Sirfetch'd", 
         "sta": "158"
     }, 
     {
@@ -1509,6 +1509,14 @@
         "name": "Slowpoke (Galarian)", 
         "sta": "207"
     }, 
+    {
+        "atk": "177", 
+        "def": "180", 
+        "evolutions": [], 
+        "id": "80", 
+        "name": "Slowbro (Galarian)", 
+        "sta": "216"
+    },
     {
         "atk": "178", 
         "def": "158", 
