@@ -68,11 +68,11 @@ blacklist_u = []
 # never output non-whitelisted mons with a max cp below this
 min_cp_u = 2350
 # maximum number of results for a standard mon
-maxr_u = 3
+maxr_u = 20
 # maximum results for mons that cap under the league's CP limit
-medr_u = 2
+medr_u = 10
 # maximum results for greylisted mons and reallllly low cp mons still above the minimum
-minr_u = 1
+minr_u = 5
 
 ###############################################################################################################################
 
