@@ -16,7 +16,7 @@ output = {}
 ######################################################### SETTINGS ###############################################################
 
 # Mainly for debugging. Turn everything to False before running.
-verbose = True
+verbose = False
 debug = False
 print_optimal = False
 
@@ -25,7 +25,7 @@ spip_print = map(lambda x:x.lower(),spip_print)
 spip_print = []
 
 # Include mega evolutions
-megas = False
+megas = True
 # Cuts the number of pokemon rankings for mons below a certain pokedex number in half if set to true
 new_focus = False
 # Sets the number to cut rankings at - set to cut gen 1-4 now
