@@ -7683,5 +7683,49 @@
         "id": 717,
         "name": "Yveltal",
         "evolutions": []
+    },
+    {
+        "atk": 95,
+        "def": 86,
+        "sta": 172,
+        "id": 819,
+        "name": "Skwovet",
+        "evolutions": [
+            "Greedent"
+        ]
+    },
+    {
+        "atk": 160,
+        "def": 156,
+        "sta": 260,
+        "id": 820,
+        "name": "Greedent",
+        "evolutions": []
+    },
+    {
+        "atk": 76,
+        "def": 97,
+        "sta": 123,
+        "id": 831,
+        "name": "Wooloo",
+        "evolutions": [
+            "Dubwool"
+        ]
+    },
+    {
+        "atk": 159,
+        "def": 198,
+        "sta": 176,
+        "id": 832,
+        "name": "Dubwool",
+        "evolutions": []
+    },
+    {
+        "atk": 193,
+        "def": 170,
+        "sta": 163,
+        "id": 820,
+        "name": "Falinks",
+        "evolutions": []
     }
 ]
