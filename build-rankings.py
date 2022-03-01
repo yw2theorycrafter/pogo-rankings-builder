@@ -677,6 +677,7 @@ if __name__ == "__main__":
             bdef = int(p["def"])
             bsta = int(p["sta"])
             num = int(p["id"])
+
             evos = p["evolutions"]
 
             max_cp = int(
@@ -824,7 +825,7 @@ if __name__ == "__main__":
             )
             i = 0
             min_norm = 1600
-            min_low = 1500
+            min_low = 1400
             max_sp = out[0]
             lim = maxr_g
             lim = medr_g if int(num) in whitelist_g or max_sp < 1700000.0 else lim
@@ -1014,7 +1015,7 @@ if __name__ == "__main__":
                 )
                 i = 0
                 min_norm = 2600
-                min_low = 2500
+                min_low = 2400
                 lim = (
                     medr_u
                     if buddy_max_cp < min_norm or int(num) in whitelist_u
