@@ -1010,14 +1010,6 @@
         "sta": "198"
     }, 
     {
-        "atk": "173", 
-        "def": "173", 
-        "evolutions": [], 
-        "id": "101", 
-        "name": "Electrode", 
-        "sta": "155"
-    }, 
-    {
         "atk": "67", 
         "def": "116", 
         "evolutions": [
@@ -3580,6 +3572,14 @@
         "id": "100", 
         "name": "Voltorb", 
         "sta": "120"
+    }, 
+    {
+        "atk": "173", 
+        "def": "173", 
+        "evolutions": [], 
+        "id": "101", 
+        "name": "Electrode", 
+        "sta": "155"
     }, 
     {
         "atk": "263", 
@@ -9022,5 +9022,23 @@
     "evolutions": [],
     "id": 898,
     "name": "Calyrex"
-  }
+  },
+    {
+        "atk": "109", 
+        "def": "111", 
+        "evolutions": [
+            "Electrode (Hisuian)"
+        ], 
+        "id": "100", 
+        "name": "Voltorb (Hisuian)", 
+        "sta": "120"
+    }, 
+    {
+        "atk": "176", 
+        "def": "176", 
+        "evolutions": [], 
+        "id": "101", 
+        "name": "Electrode (Hisuian)", 
+        "sta": "155"
+    }
 ]
