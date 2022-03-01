@@ -40,8 +40,7 @@
             "Vaporeon", 
             "Jolteon", 
             "Flareon", 
-            "Espeon",
-            "Sylveon"
+            "Espeon"
         ], 
         "id": "133", 
         "name": "Eevee", 
@@ -7528,14 +7527,6 @@
         "evolutions": []
     },
     {
-        "atk": 203,
-        "def": 205,
-        "sta": 216,
-        "id": 700,
-        "name": "Sylveon",
-        "evolutions": []
-    },
-    {
         "atk": 195,
         "def": 153,
         "sta": 186,
@@ -7727,5 +7718,1309 @@
         "id": 820,
         "name": "Falinks",
         "evolutions": []
-    }
+    },
+  {
+    "atk": 102,
+    "def": 99,
+    "sta": 169,
+    "evolutions": [],
+    "id": 722,
+    "name": "Rowlet"
+  },
+  {
+    "atk": 142,
+    "def": 139,
+    "sta": 186,
+    "evolutions": [],
+    "id": 723,
+    "name": "Dartrix"
+  },
+  {
+    "atk": 210,
+    "def": 179,
+    "sta": 186,
+    "evolutions": [],
+    "id": 724,
+    "name": "Decidueye"
+  },
+  {
+    "atk": 128,
+    "def": 79,
+    "sta": 128,
+    "evolutions": [],
+    "id": 725,
+    "name": "Litten"
+  },
+  {
+    "atk": 174,
+    "def": 103,
+    "sta": 163,
+    "evolutions": [],
+    "id": 726,
+    "name": "Torracat"
+  },
+  {
+    "atk": 214,
+    "def": 175,
+    "sta": 216,
+    "evolutions": [],
+    "id": 727,
+    "name": "Incineroar"
+  },
+  {
+    "atk": 120,
+    "def": 103,
+    "sta": 137,
+    "evolutions": [],
+    "id": 728,
+    "name": "Popplio"
+  },
+  {
+    "atk": 168,
+    "def": 145,
+    "sta": 155,
+    "evolutions": [],
+    "id": 729,
+    "name": "Brionne"
+  },
+  {
+    "atk": 232,
+    "def": 195,
+    "sta": 190,
+    "evolutions": [],
+    "id": 730,
+    "name": "Primarina"
+  },
+  {
+    "atk": 136,
+    "def": 59,
+    "sta": 111,
+    "evolutions": [],
+    "id": 731,
+    "name": "Pikipek"
+  },
+  {
+    "atk": 159,
+    "def": 100,
+    "sta": 146,
+    "evolutions": [],
+    "id": 732,
+    "name": "Trumbeak"
+  },
+  {
+    "atk": 222,
+    "def": 146,
+    "sta": 190,
+    "evolutions": [],
+    "id": 733,
+    "name": "Toucannon"
+  },
+  {
+    "atk": 122,
+    "def": 56,
+    "sta": 134,
+    "evolutions": [],
+    "id": 734,
+    "name": "Yungoos"
+  },
+  {
+    "atk": 194,
+    "def": 113,
+    "sta": 204,
+    "evolutions": [],
+    "id": 735,
+    "name": "Gumshoos"
+  },
+  {
+    "atk": 115,
+    "def": 85,
+    "sta": 132,
+    "evolutions": [],
+    "id": 736,
+    "name": "Grubbin"
+  },
+  {
+    "atk": 145,
+    "def": 161,
+    "sta": 149,
+    "evolutions": [],
+    "id": 737,
+    "name": "Charjabug"
+  },
+  {
+    "atk": 254,
+    "def": 158,
+    "sta": 184,
+    "evolutions": [],
+    "id": 738,
+    "name": "Vikavolt"
+  },
+  {
+    "atk": 150,
+    "def": 104,
+    "sta": 132,
+    "evolutions": [],
+    "id": 739,
+    "name": "Crabrawler"
+  },
+  {
+    "atk": 231,
+    "def": 138,
+    "sta": 219,
+    "evolutions": [],
+    "id": 740,
+    "name": "Crabominable"
+  },
+  {
+    "atk": 110,
+    "def": 81,
+    "sta": 120,
+    "evolutions": [],
+    "id": 742,
+    "name": "Cutiefly"
+  },
+  {
+    "atk": 198,
+    "def": 146,
+    "sta": 155,
+    "evolutions": [],
+    "id": 743,
+    "name": "Ribombee"
+  },
+  {
+    "atk": 117,
+    "def": 78,
+    "sta": 128,
+    "evolutions": [],
+    "id": 744,
+    "name": "Rockruff"
+  },
+  {
+    "atk": 231,
+    "def": 140,
+    "sta": 181,
+    "evolutions": [],
+    "id": 745,
+    "name": "Lycanroc"
+  },
+  {
+    "atk": 46,
+    "def": 43,
+    "sta": 128,
+    "evolutions": [],
+    "id": 746,
+    "name": "Wishiwashi"
+  },
+  {
+    "atk": 98,
+    "def": 110,
+    "sta": 137,
+    "evolutions": [],
+    "id": 747,
+    "name": "Mareanie"
+  },
+  {
+    "atk": 114,
+    "def": 273,
+    "sta": 137,
+    "evolutions": [],
+    "id": 748,
+    "name": "Toxapex"
+  },
+  {
+    "atk": 175,
+    "def": 121,
+    "sta": 172,
+    "evolutions": [],
+    "id": 749,
+    "name": "Mudbray"
+  },
+  {
+    "atk": 214,
+    "def": 174,
+    "sta": 225,
+    "evolutions": [],
+    "id": 750,
+    "name": "Mudsdale"
+  },
+  {
+    "atk": 72,
+    "def": 117,
+    "sta": 116,
+    "evolutions": [],
+    "id": 751,
+    "name": "Dewpider"
+  },
+  {
+    "atk": 126,
+    "def": 219,
+    "sta": 169,
+    "evolutions": [],
+    "id": 752,
+    "name": "Araquanid"
+  },
+  {
+    "atk": 100,
+    "def": 64,
+    "sta": 120,
+    "evolutions": [],
+    "id": 753,
+    "name": "Fomantis"
+  },
+  {
+    "atk": 192,
+    "def": 169,
+    "sta": 172,
+    "evolutions": [],
+    "id": 754,
+    "name": "Lurantis"
+  },
+  {
+    "atk": 108,
+    "def": 119,
+    "sta": 120,
+    "evolutions": [],
+    "id": 755,
+    "name": "Morelull"
+  },
+  {
+    "atk": 154,
+    "def": 168,
+    "sta": 155,
+    "evolutions": [],
+    "id": 756,
+    "name": "Shiinotic"
+  },
+  {
+    "atk": 136,
+    "def": 80,
+    "sta": 134,
+    "evolutions": [],
+    "id": 757,
+    "name": "Salandit"
+  },
+  {
+    "atk": 228,
+    "def": 130,
+    "sta": 169,
+    "evolutions": [],
+    "id": 758,
+    "name": "Salazzle"
+  },
+  {
+    "atk": 136,
+    "def": 95,
+    "sta": 172,
+    "evolutions": [],
+    "id": 759,
+    "name": "Stufful"
+  },
+  {
+    "atk": 226,
+    "def": 141,
+    "sta": 260,
+    "evolutions": [],
+    "id": 760,
+    "name": "Bewear"
+  },
+  {
+    "atk": 55,
+    "def": 69,
+    "sta": 123,
+    "evolutions": [],
+    "id": 761,
+    "name": "Bounsweet"
+  },
+  {
+    "atk": 78,
+    "def": 94,
+    "sta": 141,
+    "evolutions": [],
+    "id": 762,
+    "name": "Steenee"
+  },
+  {
+    "atk": 222,
+    "def": 195,
+    "sta": 176,
+    "evolutions": [],
+    "id": 763,
+    "name": "Tsareena"
+  },
+  {
+    "atk": 165,
+    "def": 215,
+    "sta": 139,
+    "evolutions": [],
+    "id": 764,
+    "name": "Comfey"
+  },
+  {
+    "atk": 168,
+    "def": 192,
+    "sta": 207,
+    "evolutions": [],
+    "id": 765,
+    "name": "Oranguru"
+  },
+  {
+    "atk": 222,
+    "def": 160,
+    "sta": 225,
+    "evolutions": [],
+    "id": 766,
+    "name": "Passimian"
+  },
+  {
+    "atk": 67,
+    "def": 74,
+    "sta": 93,
+    "evolutions": [],
+    "id": 767,
+    "name": "Wimpod"
+  },
+  {
+    "atk": 218,
+    "def": 226,
+    "sta": 181,
+    "evolutions": [],
+    "id": 768,
+    "name": "Golisopod"
+  },
+  {
+    "atk": 120,
+    "def": 118,
+    "sta": 146,
+    "evolutions": [],
+    "id": 769,
+    "name": "Sandygast"
+  },
+  {
+    "atk": 178,
+    "def": 178,
+    "sta": 198,
+    "evolutions": [],
+    "id": 770,
+    "name": "Palossand"
+  },
+  {
+    "atk": 97,
+    "def": 224,
+    "sta": 146,
+    "evolutions": [],
+    "id": 771,
+    "name": "Pyukumuku"
+  },
+  {
+    "atk": 184,
+    "def": 184,
+    "sta": 216,
+    "evolutions": [],
+    "id": 772,
+    "name": "Type: Null"
+  },
+  {
+    "atk": 198,
+    "def": 198,
+    "sta": 216,
+    "evolutions": [],
+    "id": 773,
+    "name": "Silvally"
+  },
+  {
+    "atk": 116,
+    "def": 194,
+    "sta": 155,
+    "evolutions": [],
+    "id": 774,
+    "name": "Minior"
+  },
+  {
+    "atk": 216,
+    "def": 165,
+    "sta": 163,
+    "evolutions": [],
+    "id": 775,
+    "name": "Komala"
+  },
+  {
+    "atk": 165,
+    "def": 215,
+    "sta": 155,
+    "evolutions": [],
+    "id": 776,
+    "name": "Turtonator"
+  },
+  {
+    "atk": 190,
+    "def": 145,
+    "sta": 163,
+    "evolutions": [],
+    "id": 777,
+    "name": "Togedemaru"
+  },
+  {
+    "atk": 177,
+    "def": 199,
+    "sta": 146,
+    "evolutions": [],
+    "id": 778,
+    "name": "Mimikyu"
+  },
+  {
+    "atk": 208,
+    "def": 145,
+    "sta": 169,
+    "evolutions": [],
+    "id": 779,
+    "name": "Bruxish"
+  },
+  {
+    "atk": 231,
+    "def": 164,
+    "sta": 186,
+    "evolutions": [],
+    "id": 780,
+    "name": "Drampa"
+  },
+  {
+    "atk": 233,
+    "def": 179,
+    "sta": 172,
+    "evolutions": [],
+    "id": 781,
+    "name": "Dhelmise"
+  },
+  {
+    "atk": 102,
+    "def": 108,
+    "sta": 128,
+    "evolutions": [],
+    "id": 782,
+    "name": "Jangmo-o"
+  },
+  {
+    "atk": 145,
+    "def": 162,
+    "sta": 146,
+    "evolutions": [],
+    "id": 783,
+    "name": "Hakamo-o"
+  },
+  {
+    "atk": 222,
+    "def": 240,
+    "sta": 181,
+    "evolutions": [],
+    "id": 784,
+    "name": "Kommo-o"
+  },
+  {
+    "atk": 250,
+    "def": 181,
+    "sta": 172,
+    "evolutions": [],
+    "id": 785,
+    "name": "Tapu Koko"
+  },
+  {
+    "atk": 259,
+    "def": 208,
+    "sta": 172,
+    "evolutions": [],
+    "id": 786,
+    "name": "Tapu Lele"
+  },
+  {
+    "atk": 249,
+    "def": 215,
+    "sta": 172,
+    "evolutions": [],
+    "id": 787,
+    "name": "Tapu Bulu"
+  },
+  {
+    "atk": 189,
+    "def": 254,
+    "sta": 172,
+    "evolutions": [],
+    "id": 788,
+    "name": "Tapu Fini"
+  },
+  {
+    "atk": 54,
+    "def": 57,
+    "sta": 125,
+    "evolutions": [],
+    "id": 789,
+    "name": "Cosmog"
+  },
+  {
+    "atk": 54,
+    "def": 242,
+    "sta": 125,
+    "evolutions": [],
+    "id": 790,
+    "name": "Cosmoem"
+  },
+  {
+    "atk": 255,
+    "def": 191,
+    "sta": 264,
+    "evolutions": [],
+    "id": 791,
+    "name": "Solgaleo"
+  },
+  {
+    "atk": 255,
+    "def": 191,
+    "sta": 264,
+    "evolutions": [],
+    "id": 792,
+    "name": "Lunala"
+  },
+  {
+    "atk": 249,
+    "def": 210,
+    "sta": 240,
+    "evolutions": [],
+    "id": 793,
+    "name": "Nihilego"
+  },
+  {
+    "atk": 236,
+    "def": 196,
+    "sta": 216,
+    "evolutions": [],
+    "id": 794,
+    "name": "Buzzwole"
+  },
+  {
+    "atk": 316,
+    "def": 85,
+    "sta": 174,
+    "evolutions": [],
+    "id": 795,
+    "name": "Pheromosa"
+  },
+  {
+    "atk": 330,
+    "def": 144,
+    "sta": 195,
+    "evolutions": [],
+    "id": 796,
+    "name": "Xurkitree"
+  },
+  {
+    "atk": 207,
+    "def": 199,
+    "sta": 219,
+    "evolutions": [],
+    "id": 797,
+    "name": "Celesteela"
+  },
+  {
+    "atk": 323,
+    "def": 182,
+    "sta": 139,
+    "evolutions": [],
+    "id": 798,
+    "name": "Kartana"
+  },
+  {
+    "atk": 188,
+    "def": 99,
+    "sta": 440,
+    "evolutions": [],
+    "id": 799,
+    "name": "Guzzlord"
+  },
+  {
+    "atk": 251,
+    "def": 195,
+    "sta": 219,
+    "evolutions": [],
+    "id": 800,
+    "name": "Necrozma"
+  },
+  {
+    "atk": 246,
+    "def": 225,
+    "sta": 190,
+    "evolutions": [],
+    "id": 801,
+    "name": "Magearna"
+  },
+  {
+    "atk": 265,
+    "def": 190,
+    "sta": 207,
+    "evolutions": [],
+    "id": 802,
+    "name": "Marshadow"
+  },
+  {
+    "atk": 145,
+    "def": 133,
+    "sta": 167,
+    "evolutions": [],
+    "id": 803,
+    "name": "Poipole"
+  },
+  {
+    "atk": 263,
+    "def": 159,
+    "sta": 177,
+    "evolutions": [],
+    "id": 804,
+    "name": "Naganadel"
+  },
+  {
+    "atk": 213,
+    "def": 298,
+    "sta": 156,
+    "evolutions": [],
+    "id": 805,
+    "name": "Stakataka"
+  },
+  {
+    "atk": 315,
+    "def": 148,
+    "sta": 142,
+    "evolutions": [],
+    "id": 806,
+    "name": "Blacephalon"
+  },
+  {
+    "atk": 252,
+    "def": 177,
+    "sta": 204,
+    "evolutions": [],
+    "id": 807,
+    "name": "Zeraora"
+  },
+  {
+    "atk": 122,
+    "def": 91,
+    "sta": 137,
+    "evolutions": [],
+    "id": 810,
+    "name": "Grookey"
+  },
+  {
+    "atk": 165,
+    "def": 134,
+    "sta": 172,
+    "evolutions": [],
+    "id": 811,
+    "name": "Thwackey"
+  },
+  {
+    "atk": 239,
+    "def": 168,
+    "sta": 225,
+    "evolutions": [],
+    "id": 812,
+    "name": "Rillaboom"
+  },
+  {
+    "atk": 132,
+    "def": 79,
+    "sta": 137,
+    "evolutions": [],
+    "id": 813,
+    "name": "Scorbunny"
+  },
+  {
+    "atk": 170,
+    "def": 125,
+    "sta": 163,
+    "evolutions": [],
+    "id": 814,
+    "name": "Raboot"
+  },
+  {
+    "atk": 238,
+    "def": 163,
+    "sta": 190,
+    "evolutions": [],
+    "id": 815,
+    "name": "Cinderace"
+  },
+  {
+    "atk": 132,
+    "def": 79,
+    "sta": 137,
+    "evolutions": [],
+    "id": 816,
+    "name": "Sobble"
+  },
+  {
+    "atk": 186,
+    "def": 113,
+    "sta": 163,
+    "evolutions": [],
+    "id": 817,
+    "name": "Drizzile"
+  },
+  {
+    "atk": 262,
+    "def": 142,
+    "sta": 172,
+    "evolutions": [],
+    "id": 818,
+    "name": "Inteleon"
+  },
+  {
+    "atk": 88,
+    "def": 67,
+    "sta": 116,
+    "evolutions": [],
+    "id": 821,
+    "name": "Rookidee"
+  },
+  {
+    "atk": 129,
+    "def": 110,
+    "sta": 169,
+    "evolutions": [],
+    "id": 822,
+    "name": "Corvisquire"
+  },
+  {
+    "atk": 163,
+    "def": 192,
+    "sta": 221,
+    "evolutions": [],
+    "id": 823,
+    "name": "Corviknight"
+  },
+  {
+    "atk": 46,
+    "def": 67,
+    "sta": 93,
+    "evolutions": [],
+    "id": 824,
+    "name": "Blipbug"
+  },
+  {
+    "atk": 87,
+    "def": 157,
+    "sta": 137,
+    "evolutions": [],
+    "id": 825,
+    "name": "Dottler"
+  },
+  {
+    "atk": 156,
+    "def": 240,
+    "sta": 155,
+    "evolutions": [],
+    "id": 826,
+    "name": "Orbeetle"
+  },
+  {
+    "atk": 85,
+    "def": 82,
+    "sta": 120,
+    "evolutions": [],
+    "id": 827,
+    "name": "Nickit"
+  },
+  {
+    "atk": 172,
+    "def": 164,
+    "sta": 172,
+    "evolutions": [],
+    "id": 828,
+    "name": "Thievul"
+  },
+  {
+    "atk": 70,
+    "def": 104,
+    "sta": 120,
+    "evolutions": [],
+    "id": 829,
+    "name": "Gossifleur"
+  },
+  {
+    "atk": 148,
+    "def": 211,
+    "sta": 155,
+    "evolutions": [],
+    "id": 830,
+    "name": "Eldegoss"
+  },
+  {
+    "atk": 114,
+    "def": 85,
+    "sta": 137,
+    "evolutions": [],
+    "id": 833,
+    "name": "Chewtle"
+  },
+  {
+    "atk": 213,
+    "def": 164,
+    "sta": 207,
+    "evolutions": [],
+    "id": 834,
+    "name": "Drednaw"
+  },
+  {
+    "atk": 80,
+    "def": 90,
+    "sta": 153,
+    "evolutions": [],
+    "id": 835,
+    "name": "Yamper"
+  },
+  {
+    "atk": 197,
+    "def": 131,
+    "sta": 170,
+    "evolutions": [],
+    "id": 836,
+    "name": "Boltund"
+  },
+  {
+    "atk": 73,
+    "def": 91,
+    "sta": 102,
+    "evolutions": [],
+    "id": 837,
+    "name": "Rolycoly"
+  },
+  {
+    "atk": 114,
+    "def": 157,
+    "sta": 190,
+    "evolutions": [],
+    "id": 838,
+    "name": "Carkol"
+  },
+  {
+    "atk": 146,
+    "def": 198,
+    "sta": 242,
+    "evolutions": [],
+    "id": 839,
+    "name": "Coalossal"
+  },
+  {
+    "atk": 71,
+    "def": 116,
+    "sta": 120,
+    "evolutions": [],
+    "id": 840,
+    "name": "Applin"
+  },
+  {
+    "atk": 214,
+    "def": 144,
+    "sta": 172,
+    "evolutions": [],
+    "id": 841,
+    "name": "Flapple"
+  },
+  {
+    "atk": 178,
+    "def": 146,
+    "sta": 242,
+    "evolutions": [],
+    "id": 842,
+    "name": "Appletun"
+  },
+  {
+    "atk": 103,
+    "def": 123,
+    "sta": 141,
+    "evolutions": [],
+    "id": 843,
+    "name": "Silicobra"
+  },
+  {
+    "atk": 202,
+    "def": 207,
+    "sta": 176,
+    "evolutions": [],
+    "id": 844,
+    "name": "Sandaconda"
+  },
+  {
+    "atk": 173,
+    "def": 163,
+    "sta": 172,
+    "evolutions": [],
+    "id": 845,
+    "name": "Cramorant"
+  },
+  {
+    "atk": 118,
+    "def": 72,
+    "sta": 121,
+    "evolutions": [],
+    "id": 846,
+    "name": "Arrokuda"
+  },
+  {
+    "atk": 258,
+    "def": 127,
+    "sta": 156,
+    "evolutions": [],
+    "id": 847,
+    "name": "Barraskewda"
+  },
+  {
+    "atk": 97,
+    "def": 65,
+    "sta": 120,
+    "evolutions": [],
+    "id": 848,
+    "name": "Toxel"
+  },
+  {
+    "atk": 224,
+    "def": 140,
+    "sta": 181,
+    "evolutions": [],
+    "id": 849,
+    "name": "Toxtricity"
+  },
+  {
+    "atk": 118,
+    "def": 90,
+    "sta": 137,
+    "evolutions": [],
+    "id": 850,
+    "name": "Sizzlipede"
+  },
+  {
+    "atk": 220,
+    "def": 158,
+    "sta": 225,
+    "evolutions": [],
+    "id": 851,
+    "name": "Centiskorch"
+  },
+  {
+    "atk": 121,
+    "def": 103,
+    "sta": 137,
+    "evolutions": [],
+    "id": 852,
+    "name": "Clobbopus"
+  },
+  {
+    "atk": 209,
+    "def": 162,
+    "sta": 190,
+    "evolutions": [],
+    "id": 853,
+    "name": "Grapploct"
+  },
+  {
+    "atk": 134,
+    "def": 96,
+    "sta": 120,
+    "evolutions": [],
+    "id": 854,
+    "name": "Sinistea"
+  },
+  {
+    "atk": 248,
+    "def": 189,
+    "sta": 155,
+    "evolutions": [],
+    "id": 855,
+    "name": "Polteageist"
+  },
+  {
+    "atk": 98,
+    "def": 93,
+    "sta": 123,
+    "evolutions": [],
+    "id": 856,
+    "name": "Hatenna"
+  },
+  {
+    "atk": 153,
+    "def": 133,
+    "sta": 149,
+    "evolutions": [],
+    "id": 857,
+    "name": "Hattrem"
+  },
+  {
+    "atk": 237,
+    "def": 182,
+    "sta": 149,
+    "evolutions": [],
+    "id": 858,
+    "name": "Hatterene"
+  },
+  {
+    "atk": 103,
+    "def": 69,
+    "sta": 128,
+    "evolutions": [],
+    "id": 859,
+    "name": "Impidimp"
+  },
+  {
+    "atk": 145,
+    "def": 102,
+    "sta": 163,
+    "evolutions": [],
+    "id": 860,
+    "name": "Morgrem"
+  },
+  {
+    "atk": 227,
+    "def": 139,
+    "sta": 216,
+    "evolutions": [],
+    "id": 861,
+    "name": "Grimmsnarl"
+  },
+  {
+    "atk": 90,
+    "def": 97,
+    "sta": 128,
+    "evolutions": [],
+    "id": 868,
+    "name": "Milcery"
+  },
+  {
+    "atk": 203,
+    "def": 203,
+    "sta": 163,
+    "evolutions": [],
+    "id": 869,
+    "name": "Alcremie"
+  },
+  {
+    "atk": 176,
+    "def": 161,
+    "sta": 134,
+    "evolutions": [],
+    "id": 871,
+    "name": "Pincurchin"
+  },
+  {
+    "atk": 76,
+    "def": 59,
+    "sta": 102,
+    "evolutions": [],
+    "id": 872,
+    "name": "Snom"
+  },
+  {
+    "atk": 230,
+    "def": 155,
+    "sta": 172,
+    "evolutions": [],
+    "id": 873,
+    "name": "Frosmoth"
+  },
+  {
+    "atk": 222,
+    "def": 182,
+    "sta": 225,
+    "evolutions": [],
+    "id": 874,
+    "name": "Stonjourner"
+  },
+  {
+    "atk": 148,
+    "def": 195,
+    "sta": 181,
+    "evolutions": [],
+    "id": 875,
+    "name": "Eiscue"
+  },
+  {
+    "atk": 208,
+    "def": 166,
+    "sta": 155,
+    "evolutions": [],
+    "id": 876,
+    "name": "Indeedee"
+  },
+  {
+    "atk": 192,
+    "def": 121,
+    "sta": 151,
+    "evolutions": [],
+    "id": 877,
+    "name": "Morpeko"
+  },
+  {
+    "atk": 140,
+    "def": 91,
+    "sta": 176,
+    "evolutions": [],
+    "id": 878,
+    "name": "Cufant"
+  },
+  {
+    "atk": 226,
+    "def": 126,
+    "sta": 263,
+    "evolutions": [],
+    "id": 879,
+    "name": "Copperajah"
+  },
+  {
+    "atk": 195,
+    "def": 165,
+    "sta": 207,
+    "evolutions": [],
+    "id": 880,
+    "name": "Dracozolt"
+  },
+  {
+    "atk": 190,
+    "def": 166,
+    "sta": 207,
+    "evolutions": [],
+    "id": 881,
+    "name": "Arctozolt"
+  },
+  {
+    "atk": 175,
+    "def": 185,
+    "sta": 207,
+    "evolutions": [],
+    "id": 882,
+    "name": "Dracovish"
+  },
+  {
+    "atk": 171,
+    "def": 185,
+    "sta": 207,
+    "evolutions": [],
+    "id": 883,
+    "name": "Arctovish"
+  },
+  {
+    "atk": 239,
+    "def": 185,
+    "sta": 172,
+    "evolutions": [],
+    "id": 884,
+    "name": "Duraludon"
+  },
+  {
+    "atk": 117,
+    "def": 61,
+    "sta": 99,
+    "evolutions": [],
+    "id": 885,
+    "name": "Dreepy"
+  },
+  {
+    "atk": 163,
+    "def": 105,
+    "sta": 169,
+    "evolutions": [],
+    "id": 886,
+    "name": "Drakloak"
+  },
+  {
+    "atk": 266,
+    "def": 170,
+    "sta": 204,
+    "evolutions": [],
+    "id": 887,
+    "name": "Dragapult"
+  },
+  {
+    "atk": 254,
+    "def": 236,
+    "sta": 192,
+    "evolutions": [],
+    "id": 888,
+    "name": "Zacian"
+  },
+  {
+    "atk": 254,
+    "def": 236,
+    "sta": 192,
+    "evolutions": [],
+    "id": 889,
+    "name": "Zamazenta"
+  },
+  {
+    "atk": 278,
+    "def": 192,
+    "sta": 268,
+    "evolutions": [],
+    "id": 890,
+    "name": "Eternatus"
+  },
+  {
+    "atk": 170,
+    "def": 112,
+    "sta": 155,
+    "evolutions": [],
+    "id": 891,
+    "name": "Kubfu"
+  },
+  {
+    "atk": 254,
+    "def": 177,
+    "sta": 225,
+    "evolutions": [],
+    "id": 892,
+    "name": "Urshifu"
+  },
+  {
+    "atk": 242,
+    "def": 215,
+    "sta": 233,
+    "evolutions": [],
+    "id": 893,
+    "name": "Zarude"
+  },
+  {
+    "atk": 250,
+    "def": 125,
+    "sta": 190,
+    "evolutions": [],
+    "id": 894,
+    "name": "Regieleki"
+  },
+  {
+    "atk": 202,
+    "def": 101,
+    "sta": 400,
+    "evolutions": [],
+    "id": 895,
+    "name": "Regidrago"
+  },
+  {
+    "atk": 246,
+    "def": 223,
+    "sta": 225,
+    "evolutions": [],
+    "id": 896,
+    "name": "Glastrier"
+  },
+  {
+    "atk": 273,
+    "def": 146,
+    "sta": 205,
+    "evolutions": [],
+    "id": 897,
+    "name": "Spectrier"
+  },
+  {
+    "atk": 162,
+    "def": 162,
+    "sta": 225,
+    "evolutions": [],
+    "id": 898,
+    "name": "Calyrex"
+  }
 ]
